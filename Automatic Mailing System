@@ -1,0 +1,29 @@
+import smtplib #secure mail transfer protocol
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+
+email_user = "k7lovesanjali@gmail.com"
+email_send = "swethaa2062002@gmail.com"
+
+subject = "Regarding The Leave"
+
+msg = MIMEMultipart()
+msg['From'] = email_user
+msg['To'] = email_send
+msg['Subject'] = subject
+
+body = "Hello!Hope your work is going well.This email is to inform you that the office will be closed from (3.11.2021 to 7.11.2021) due to Diwali Holidays or Deepawali Holidays.All the meeting during this time will be canceled and set on some other day.You will be informed about the changes later on. Enjoy your holidays."
+msg.attach(MIMEText(body,'plain'))
+
+
+text = msg.as_string()
+server = smtplib.SMTP('smtp.gmail.com', 587)
+
+server.starttls()
+
+#Next, log in to the server
+server.login("k7lovesanjali@gmail.com", "kesavan@22")
+#Send the mail
+
+server.sendmail(email_user, email_send, text) 
+server.quit()
